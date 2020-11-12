@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question3</title>
+</head>
+<body>
+
+    <form>
+        <label>Enter bracket string: </label>
+        <input type="text" id="string" name="string">
+        <input type="submit" value="Submit" id="myButton">
+    </form>
+
+
+</body>
+
+<script>
+
+
+
+    document.getElementById("myButton").addEventListener("click", function()
+    {
+        var str = document.getElementById("string").value;
+        var stringValid=true;
+        for(var i=0;i<str.length;i++)
+        {
+            if(str.charAt(i)!='('&&str.charAt(i)!=')'&&str.charAt(i)!='['&&str.charAt(i)!=']'&&str.charAt(i)!='{'&&str.charAt(i)!='}')
+            {
+                stringValid=false;
+            }
+        }
+        if(stringValid==false)
+        {
+            alert(" Please enter valid string containing only parenthesis!");
+        }
+        else
+        {
+        var arr = new Array();
+        var ans=true;
+        var last;
+        for(var i=0;i<str.length;i++)
+        {
+            if(str.charAt(i)=="(")
+            {
+                arr.push("(");
+            }
+            else if(str.charAt(i)=="[")
+            {
+                arr.push("[");
+            }
+            else if(str.charAt(i)=="{")
+            {
+                arr.push("{");
+            }
+            else if(str.charAt(i)==")")
+            {
+                if(arr.length==0)
+                {
+                    ans=false;
+                    break;
+                }
+                last = arr.pop();
+                if(last!="(")
+                {
+                    ans=false;
+                    break;
+                }
+            }
+            else if(str.charAt(i)=="]")
+            {
+                if(arr.length==0)
+                {
+                    ans=false;
+                    break;
+                }
+                last = arr.pop();
+                if(last!="[")
+                {
+                    ans=false;
+                    break;
+                }
+            }
+            else if(str.charAt(i)=="}")
+            {
+                if(arr.length==0)
+                {
+                    ans=false;
+                    break;
+                }
+                last = arr.pop();
+                if(last!="{")
+                {
+                    ans=false;
+                    break;
+                }
+            }
+        }
+        if(arr.length!=0)
+        {
+            ans=false;
+        }
+        if(ans==true)
+        {
+            alert(str + " is Valid");
+        }
+        else
+        {
+            alert(str + " is Invalid");
+        }
+}
+    }, false);
+</script>
+</html>
