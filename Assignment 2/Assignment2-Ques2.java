@@ -1,94 +1,36 @@
 import java.util.Scanner;
 
-public class Ques2
+public class question2 {
 
-{
-
-    private static final int MAX_RANGE = 1000000;
-
-
-    public static void sort( int[] arr )
-
-    {
-
-        int N = arr.length;
-
-        if (N == 0)
-
-            return;
-
-    
-
-        int max = arr[0], min = arr[0];
-
-        for (int i = 1; i < N; i++)
-
-        {
-
-            if (arr[i] > max)
-
-                max = arr[i];
-
-            if (arr[i] < min)
-
-                min = arr[i];
-
+    public static void main(String[] args) {
+        Scanner obj= new Scanner(System.in);
+        System.out.println("Enter size");
+        int n=obj.nextInt();
+        int[] nums= new int[n];
+        System.out.println("Enter elements of the array. Acceptable range: 0 to 20 (inclusive)");
+        for(int i=0; i<n; i++) {
+            nums[i]=obj.nextInt();
+            while(nums[i]>20 || nums[i]<0) {
+                System.out.println("Invalid selection of number. Only the numbers between 0 and 20 are acceptable,"
+                        + " so kindly enter another.");
+                nums[i] = obj.nextInt();
+            }
         }
-
-        int range = max - min + 1;
-
-      
-        int[] count = new int[range];
-
-
-        for (int i = 0; i < N; i++)
-
-            count[arr[i] - min]++;
-
-
-
-        for (int i = 1; i < range; i++)
-
-            count[i] += count[i - 1];
-
-        int j = 0;
-
-        for (int i = 0; i < range; i++)
-
-            while (j < count[i])
-
-                arr[j++] = i + min;
-
-    }    
-
-
-    public static void main(String[] args) 
-
-    {
-
-        Scanner scan = new Scanner( System.in );        
-        int n, i;
-        System.out.println("Enter number of integer elements");
-
-        n = scan.nextInt();
-        int arr[] = new int[ n ];
-
-        System.out.println("\nEnter "+ n +" integer elements");
-
-        for (i = 0; i < n; i++)
-
-            arr[i] = scan.nextInt();
-              sort(arr);
-
-
-        System.out.println("\nElements after sorting ");        
-
-        for (i = 0; i < n; i++)
-
-            System.out.print(arr[i]+" ");            
-
-        System.out.println();                     
-
-    }    
-
+        int ref[]= new int [21];
+        for(int i=0; i<21; i++)
+            ref[i]=0;
+        for(int i=0; i<n; i++) {
+            ref[nums[i]]++;
+        }
+        int index=0;
+        for(int i=0; i<21; i++) {
+            for(int j=0; j<ref[i]; j++) {
+                nums[index]=i;
+                index++;
+            }
+        }
+        for(int i=0; i<n; i++) {
+            System.out.print(nums[i] + " ");
+        }
+    }
 }
