@@ -1,50 +1,36 @@
- import java.util.*;  
-class Ques1 { 
+import java.util.Scanner;
 
-	
-	public static int stringCompare(String str1, 
-									String str2) 
-	{ 
-		for (int i = 0; i < str1.length() && 
-					i < str2.length(); i++) { 
-			if ((int)str1.charAt(i) == 
-				(int)str2.charAt(i)) { 
-				continue; 
-			} 
-			else { 
-				return (int)str1.charAt(i) - 
-					(int)str2.charAt(i); 
-			} 
-		} 
+public class question1 {
 
-		
-		if (str1.length() < str2.length()) { 
-			return (str1.length()-str2.length()); 
-		} 
-		else if (str1.length() > str2.length()) { 
-			return (str1.length()-str2.length()); 
-		} 
-		
-	
-		else { 
-			return 0; 
-		} 
-	} 
-
-	public static void main(String args[]) 
-	{  
-	Scanner sc= new Scanner(System.in); 
-System.out.print("Enter a string 1: ");  
-String string1= sc.nextLine(); 
-System.out.print("Enter a string2: ");  
-String string2= sc.nextLine();   
-	
-	
-		System.out.println(stringCompare(string1, 
-										string2)); 
-		
-
-		
-	} 
-} 
-
+    public static void main(String[] args) {
+        Scanner obj=new Scanner (System.in);
+        String s1=obj.nextLine();
+        String s2=obj.nextLine();
+        int i1=0;
+        int flag=0;
+        while(i1<s1.length() && i1<s2.length())
+        {
+            if(s1.charAt(i1)<s2.charAt(i1)) {
+                System.out.println(s1 + " is lexicographically smaller than " + s2);
+                flag=1;
+                break;
+            }
+            else if(s1.charAt(i1)>s2.charAt(i1)) {
+                System.out.println(s2 + " is lexicographically smaller than " + s1);
+                flag=1;
+                break;
+            }
+            else {
+                i1++;
+            }
+        }
+        if(flag==0)
+        {
+            if(i1!=s1.length() && i1==s2.length())
+                System.out.println(s2 + " is lexicographically smaller than " + s1);
+            else if(i1==s1.length() && i1!=s2.length())
+                System.out.println(s1 + " is lexicographically smaller than " + s2);
+            else System.out.println(s2 + " and " + s1 + " are lexicographically equal");
+        }
+    }
+}
